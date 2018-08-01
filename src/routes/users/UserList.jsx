@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import UserCard from "./UserCard";
+import UserCard from "./components/UserCard";
 import { getUserList } from "../../modules/users/user_api";
 import { fetchUsers } from "../../modules/users/user_actions";
 

@@ -1,8 +1,9 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "../../../../../.cache/typescript/2.9/node_modules/redux";
 import { routerMiddleware, routerReducer } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 
 import album from "./albums/album_reducers";
+import comment from "./comments/comment_reducers";
 import photo from "./photos/photo_reducers";
 import post from "./posts/post_reducers";
 import user from "./users/user_reducers";
@@ -14,6 +15,7 @@ export const history = createHistory();
 export const store = createStore(
   combineReducers({
     album,
+    comment,
     photo,
     post,
     user,

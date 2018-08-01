@@ -1,4 +1,4 @@
-import { getAPI } from "../api/api";
+import { getAPI, postAPI, putAPI, deleteAPI } from "../api/api";
 import { BASE_URL } from "../../configs";
 import { usersUrl } from "../users/constants";
 
@@ -17,4 +17,16 @@ export async function getPostInfo(id) {
 
 export async function getComments(id) {
   return await getAPI(`${postsUrl}/${id}/comments`);
+}
+
+export async function addPost(body) {
+  return await postAPI(`${postsUrl}/`, body);
+}
+
+export async function editPost(body) {
+  return await putAPI(`${postsUrl}/${body.id}`, body);
+}
+
+export async function deletePost(id) {
+  return await deleteAPI(`${postsUrl}/${id}`);
 }

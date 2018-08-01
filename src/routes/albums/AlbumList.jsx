@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import AlbumCard from "./AlbumCard";
 import { getAlbumListByUserId, getAlbumList } from "../../modules/albums/album_api";
 import { fetchAlbums } from "../../modules/albums/album_actions";
 import { getUserInfo } from "../../modules/users/user_api";
 import { fetchUser } from "../../modules/users/user_actions";
+import AlbumCard from "./components/AlbumCard";
 
 class AlbumList extends React.Component {
   

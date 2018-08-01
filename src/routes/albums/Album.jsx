@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { getPhotos, getAlbumInfo } from "../../modules/albums/album_api";
 import { fetchAlbum } from "../../modules/albums/album_actions";
 import { fetchPhoto, fetchPhotos, togglePhotoModal } from "../../modules/photos/photo_actions";
-import PhotoModal from "./PhotoModal";
-import PhotoCard from "./PhotoCard";
+import PhotoModal from "./components/photos/PhotoModal";
+import PhotoCard from "./components/photos/PhotoCard";
 
 class Album extends React.Component {
   

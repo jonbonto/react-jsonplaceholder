@@ -5,7 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 
-import styles from "./styles";
+import styles from "../styles";
 
 const PhotoCard = (props) => {
   const { classes, photo, handleClickOpen } = props;
