@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --content-base './dist' --hot true --port 3000"
+    "dev": "webpack-dev-server --mode development --content-base './dist' --hot true --port 3000",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p"
   },
   "keywords": [
     "react",
