@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,8 +8,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import AlbumOutlineIcon from '@material-ui/icons/AlbumOutlined';
+import NotesIcon from '@material-ui/icons/Notes';
 import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 240;
@@ -48,7 +48,7 @@ class MainContainer extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit" noWrap>
-              JsonPlaceholder
+              Soul
             </Typography>
           </Toolbar>
         </AppBar>
@@ -62,15 +62,21 @@ class MainContainer extends React.Component {
           <List>
             <ListItem button component={Link} to="/users">
               <ListItemIcon>
-                <AccountBalanceIcon />
+                <VerifiedUserIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
             </ListItem>
-            <ListItem button>
+            <ListItem button component={Link} to="/albums">
               <ListItemIcon>
-                <DraftsIcon />
+                <AlbumOutlineIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <ListItemText primary="Albums" />
+            </ListItem>
+            <ListItem button component={Link} to="/posts">
+              <ListItemIcon>
+                <NotesIcon />
+              </ListItemIcon>
+              <ListItemText primary="Posts" />
             </ListItem>
           </List>
         </Drawer>
@@ -83,4 +89,4 @@ class MainContainer extends React.Component {
   }
 }
 
-export default withRouter(withStyles(styles)(MainContainer));
+export default withStyles(styles)(MainContainer);

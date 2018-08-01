@@ -1,40 +1,65 @@
 import React from "react";
-import PostCard from "./PostCard";
 import { withRouter } from "react-router";
-import { getPostListByUserId } from "../../modules/posts/post_api";
+import { connect } from "react-redux";
+
+import PostCard from "./PostCard";
+import { getPostListByUserId, getPostList } from "../../modules/posts/post_api";
 import { getUserInfo } from "../../modules/users/user_api";
+import { fetchPosts } from "../../modules/posts/post_actions";
+import { fetchUser } from "../../modules/users/user_actions";
 
 class PostList extends React.Component {
-  state = {
-    posts: [],
-    user: null
-  };
-  async componentDidMount() {
+  
+  componentDidMount() {
+    this.process();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.userId !== this.props.match.params.userId) {
+      this.process();
+    }
+  }
+
+  process = async () => {
     const userId = this.props.match.params.userId;
-    const user = await getUserInfo(userId);
-    const posts = await getPostListByUserId(userId);
-    this.setState({
-      posts,
-      user
-    });
+    let user, posts;
+    if (!userId) {
+      posts = await getPostList();
+    } else {
+      user = await getUserInfo(userId);
+      posts = await getPostListByUserId(userId);
+    }
+    this.props.fetchUser(user);
+    this.props.fetchPosts(posts);
   }
   
   render() {
-    if (!this.state.user) {
+    if (!this.props.user && this.props.match.params.userId) {
       return null;
     }
-    const postList = this.state.posts.map((post) => {
+    const postList = this.props.posts.map((post) => {
       return (
         <PostCard title={post.title} body={post.body} link={`/posts/${post.id}`}/>
       );
     });
+    const heading = this.props.user ? <h3>{this.props.user.username}'s Posts</h3> : <h3>All Posts</h3>;
     return (
       <div>
-        <h3>Post's {this.state.user.username}</h3>
+        {heading}
         {postList}
       </div>
     );
   }
 }
 
-export default withRouter(PostList);
+const mapStateToProps = state => ({
+  posts: state.post.posts,
+  user: state.user.user
+});
+
+const mapDispatchToProps = {
+  fetchPosts,
+  fetchUser
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostList));

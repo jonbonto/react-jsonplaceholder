@@ -20,6 +20,8 @@ ReactDOM.render(
         <Switch>
           <Route exact={true} path="/" component={Home}/>
           <Route exact={true} path="/users" component={UserList}/>
+          <Route exact={true} path="/albums" component={AlbumList}/>
+          <Route exact={true} path="/posts" component={PostList}/>
           <Route path="/users/:userId/albums" component={AlbumList}/>
           <Route path="/users/:userId/posts" component={PostList}/>
           <Route path="/posts/:id" component={Post}/>

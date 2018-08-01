@@ -1,133 +1,75 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Modal from '@material-ui/core/Modal';
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 
 import { getPhotos, getAlbumInfo } from "../../modules/albums/album_api";
-import { CardActions } from "@material-ui/core";
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const styles = theme => ({
-  card: {
-    width: '15%',
-    marginBottom: 12,
-    marginRight: 12,
-    float: 'left',
-  },
-  cardModal: {
-    width: '100%',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-  },
-});
+import { fetchAlbum } from "../../modules/albums/album_actions";
+import { fetchPhoto, fetchPhotos, togglePhotoModal } from "../../modules/photos/photo_actions";
+import PhotoModal from "./PhotoModal";
+import PhotoCard from "./PhotoCard";
 
 class Album extends React.Component {
-  state = {
-    open: false,
-    album: null,
-    photos: [],
-    selectedPhoto: null
-  };
+  
   async componentDidMount() {
     const id = this.props.match.params.id;
     const album = await getAlbumInfo(id);
     const photos = await getPhotos(id);
-    this.setState({
-      album,
-      photos
-    });
+    
+    this.props.fetchAlbum(album);
+    this.props.fetchPhotos(photos);
   }
 
   handleClickOpen = photo => {
-    this.setState({
-      open: true,
-      selectedPhoto: photo
-    });
+    this.props.togglePhotoModal(true);
+    this.props.fetchPhoto(photo);
   };
 
   handleClose = value => {
-    this.setState({ open: false });
+    this.props.togglePhotoModal(false);
+    this.props.fetchPhoto(null);
   };
   
   render() {
-    if (!this.state.album) {
+    if (!this.props.album) {
       return null;
     }
-    const { classes } = this.props;
-    const { selectedPhoto, album } = this.state;
-    const photos = this.state.photos.map((photo) => (
-      <Card key={photo.id} className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image={photo.thumbnailUrl}
-          title={photo.title}
-        />
-        <CardActions>
-          <Button onClick={() => this.handleClickOpen(photo)} color="primary">
-            Detail
-          </Button>
-        </CardActions>
-      </Card>
+
+    const { photo, album } = this.props;
+    const photos = this.props.photos.map((photo) => (
+      <PhotoCard 
+        photo={photo}
+        handleClickOpen={this.handleClickOpen}
+      />
     ));
     return (
       <div>
-        <h3>{this.state.album.title}'s Album</h3>
+        <h3>{album.title}'s Album</h3>
         {photos}
-        {selectedPhoto && 
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={this.state.open}
-            onClose={this.handleClose}
-          >
-            <div style={getModalStyle()} className={classes.paper}>
-              <Typography variant="title" id="modal-title">
-                {selectedPhoto.title}
-              </Typography>
-              <Typography variant="subheading" id="simple-modal-description">
-                PhotoID: {selectedPhoto.id}
-                Album: {album.title}
-              </Typography>
-              <Card className={classes.cardModal}>
-                <CardMedia
-                  className={classes.media}
-                  image={selectedPhoto.url}
-                  title={selectedPhoto.title}
-                />
-              </Card>
-            </div>
-          </Modal>
+        {photo && 
+          <PhotoModal
+            album={album}
+            photo={photo}
+            open={open}
+            handleClose={this.handleClose}
+          />
         }
       </div>
     );
   }
 }
 
-export default withStyles(styles)(withRouter(Album));
+const mapStateToProps = state => ({
+  open: state.photo.photoDialog,
+  album: state.album.album,
+  photos: state.photo.photos,
+  photo: state.photo.photo
+});
+
+const mapDispatchToProps = {
+  fetchAlbum,
+  fetchPhotos,
+  fetchPhoto,
+  togglePhotoModal
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Album));

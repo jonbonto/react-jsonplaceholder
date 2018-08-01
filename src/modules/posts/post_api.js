@@ -7,6 +7,10 @@ export async function getPostListByUserId(id) {
   return await getAPI(`${usersUrl}/${id}/posts`);
 }
 
+export async function getPostList() {
+  return await getAPI(`${postsUrl}`);
+}
+
 export async function getPostInfo(id) {
   return await getAPI(`${postsUrl}/${id}`);
 }

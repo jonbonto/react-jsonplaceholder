@@ -1,38 +1,66 @@
 import React from "react";
-import AlbumCard from "./AlbumCard";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { getAlbumListByUserId } from "../../modules/albums/album_api";
+
+import AlbumCard from "./AlbumCard";
+import { getAlbumListByUserId, getAlbumList } from "../../modules/albums/album_api";
+import { fetchAlbums } from "../../modules/albums/album_actions";
 import { getUserInfo } from "../../modules/users/user_api";
+import { fetchUser } from "../../modules/users/user_actions";
 
 class AlbumList extends React.Component {
-  state = {
-    albums: [],
-    username: null
-  };
-  async componentDidMount() {
+  
+  componentDidMount() {
+    this.process();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.userId !== this.props.match.params.userId) {
+      this.process();
+    }
+  }
+
+  async process () {
     const userId = this.props.match.params.userId;
-    console.log(userId);
-    const user = await getUserInfo(userId);
-    const albums = await getAlbumListByUserId(userId);
-    this.setState({
-      albums,
-      username: user.username
-    });
+    let user, albums;
+    if (!userId) {
+      albums = await getAlbumList();
+    } else {
+      user = await getUserInfo(userId);
+      albums = await getAlbumListByUserId(userId);
+    }
+    
+    this.props.fetchUser(user);
+    this.props.fetchAlbums(albums);
   }
   
   render() {
-    const albumList = this.state.albums.map((album) => {
+    if (!this.props.user && this.props.match.params.userId) {
+      return null;
+    }
+    const albumList = this.props.albums.map((album) => {
       return (
         <AlbumCard title={album.title} link={`/albums/${album.id}`}/>
       );
     });
+    const heading = this.props.user ? <h3>{this.props.user.username}'s Album</h3> : <h3>All Albums</h3>;
     return (
       <div>
-        <h3>{this.state.username}'s Album</h3>
+        {heading}
         {albumList}
       </div>
     );
   }
 }
 
-export default withRouter(AlbumList);
+const mapStateToProps = state => ({
+  albums: state.album.albums,
+  user: state.user.user
+});
+
+const mapDispatchToProps = {
+  fetchAlbums,
+  fetchUser
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlbumList));
