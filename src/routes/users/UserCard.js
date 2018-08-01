@@ -23,7 +23,7 @@ const styles = {
   },
 };
 
-function SimpleCard(props) {
+function UserCard(props) {
   const { classes, title, content, link } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -47,4 +47,4 @@ function SimpleCard(props) {
   );
 }
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(UserCard);

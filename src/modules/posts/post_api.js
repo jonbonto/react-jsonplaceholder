@@ -8,5 +8,9 @@ export async function getPostListByUserId(id) {
 }
 
 export async function getPostInfo(id) {
-  return await getAPI(`${albumsUrl}/${id}`);
+  return await getAPI(`${postsUrl}/${id}`);
+}
+
+export async function getComments(id) {
+  return await getAPI(`${postsUrl}/${id}/comments`);
 }

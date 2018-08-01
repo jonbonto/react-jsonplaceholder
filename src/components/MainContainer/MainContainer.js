@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -44,7 +45,7 @@ class MainContainer extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="absolute" className={classes.appBar}>
+        <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit" noWrap>
               JsonPlaceholder
@@ -82,4 +83,4 @@ class MainContainer extends React.Component {
   }
 }
 
-export default withStyles(styles)(MainContainer);
+export default withRouter(withStyles(styles)(MainContainer));

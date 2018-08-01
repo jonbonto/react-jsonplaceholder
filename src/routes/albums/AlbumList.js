@@ -28,7 +28,7 @@ class AlbumList extends React.Component {
     });
     return (
       <div>
-        <h3>Album's {this.state.username}</h3>
+        <h3>{this.state.username}'s Album</h3>
         {albumList}
       </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import SimpleCard from "../../components/SimpleCard";
+import UserCard from "./UserCard";
 import { getUserList } from "../../modules/users/user_api";
 
 export default class UserList extends React.Component {
@@ -14,11 +14,9 @@ export default class UserList extends React.Component {
   }
   
   render() {
-    const userList = this.state.users.map((user) => {
-      return (
-        <SimpleCard title={user.username} content={user.name} action="View" link={`/users/${user.id}`}/>
-      );
-    });
+    const userList = this.state.users.map((user) => (
+      <UserCard title={user.username} content={user.name} action="View" link={`/users/${user.id}`}/>
+    ));
     return (
       <div>
         <h3>All users</h3>

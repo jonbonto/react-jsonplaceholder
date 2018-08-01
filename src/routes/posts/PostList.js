@@ -7,7 +7,7 @@ import { getUserInfo } from "../../modules/users/user_api";
 class PostList extends React.Component {
   state = {
     posts: [],
-    username: null
+    user: null
   };
   async componentDidMount() {
     const userId = this.props.match.params.userId;
@@ -15,11 +15,14 @@ class PostList extends React.Component {
     const posts = await getPostListByUserId(userId);
     this.setState({
       posts,
-      username: user.username
+      user
     });
   }
   
   render() {
+    if (!this.state.user) {
+      return null;
+    }
     const postList = this.state.posts.map((post) => {
       return (
         <PostCard title={post.title} body={post.body} link={`/posts/${post.id}`}/>
@@ -27,7 +30,7 @@ class PostList extends React.Component {
     });
     return (
       <div>
-        <h3>Post's {this.state.username}</h3>
+        <h3>Post's {this.state.user.username}</h3>
         {postList}
       </div>
     );

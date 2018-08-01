@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve("dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -20,7 +21,7 @@ module.exports = {
 
         // Options to configure babel with
         query: {
-          plugins: ['transform-class-properties'],
+          plugins: ['transform-class-properties', 'transform-object-rest-spread'],
           presets: ['es2015', 'react'],
         },
         exclude: [
@@ -28,5 +29,8 @@ module.exports = {
         ]
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
   }
 }

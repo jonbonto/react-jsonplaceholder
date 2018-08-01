@@ -10,3 +10,7 @@ export async function getAlbumListByUserId(id) {
 export async function getAlbumInfo(id) {
   return await getAPI(`${albumsUrl}/${id}`);
 }
+
+export async function getPhotos(id) {
+  return await getAPI(`${albumsUrl}/${id}/photos`);
+}
