@@ -34,7 +34,7 @@ class Album extends React.Component {
       return null;
     }
 
-    const { photo, album } = this.props;
+    const { photo, album, open } = this.props;
     const photos = this.props.photos.map((photo) => (
       <PhotoCard 
         photo={photo}

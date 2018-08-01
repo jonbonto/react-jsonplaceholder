@@ -6,9 +6,9 @@ export default theme => ({
     marginBottom: 10
   },
   card: {
-    width: '45%',
+    width: "45%",
     marginBottom: 12,
     marginRight: 12,
-    float: 'left',
+    float: "left",
   }
 });

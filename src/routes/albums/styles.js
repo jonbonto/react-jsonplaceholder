@@ -15,20 +15,33 @@ function getModalStyle() {
 
 const styles = theme => ({
   card: {
-    width: '15%',
+    width: "15%",
     marginBottom: 12,
     marginRight: 12,
-    float: 'left',
+    float: "left",
+  },
+  cardAlbum: {
+    width: "25%",
+    marginBottom: 12,
+    marginRight: 12,
+    float: "left",
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
   },
   cardModal: {
-    width: '100%',
+    width: "100%",
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],

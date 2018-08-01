@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 import { getComments } from "../../modules/posts/post_api";
 import { getPostInfo } from "../../modules/posts/post_api";

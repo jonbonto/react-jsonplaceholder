@@ -16,7 +16,7 @@ const PhotoModal = (props) => {
       open={props.open}
       onClose={props.handleClose}
     >
-      <div style={classes.modal} className={classes.paper}>
+      <div className={classes.modal + " " + classes.paper}>
         <Typography variant="title" id="modal-title">
           {photo.title}
         </Typography>

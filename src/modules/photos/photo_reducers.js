@@ -1,4 +1,4 @@
-import { FETCH_PHOTO, FETCH_PHOTOS, TOGGLE_PHOTO_MODAL } from './photo_actions';
+import { FETCH_PHOTO, FETCH_PHOTOS, TOGGLE_PHOTO_MODAL } from "./photo_actions";
 
 const initialState = {
   photos: [],

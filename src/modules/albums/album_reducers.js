@@ -1,4 +1,4 @@
-import { FETCH_ALBUM, FETCH_ALBUMS } from './album_actions';
+import { FETCH_ALBUM, FETCH_ALBUMS } from "./album_actions";
 
 const initialState = {
   albums: []

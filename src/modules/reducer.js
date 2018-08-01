@@ -1,4 +1,4 @@
-import { ADD_POST } from './actions';
+import { ADD_POST } from "./actions";
 
 export function posts(state = [], action) {
   switch (action.type) {
