@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "../../../../../.cache/typescript/2.9/node_modules/redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { routerMiddleware, routerReducer } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 
