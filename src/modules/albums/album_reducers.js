@@ -1,6 +1,6 @@
 import { FETCH_ALBUM, FETCH_ALBUMS } from "./album_actions";
 
-const initialState = {
+export const initialState = {
   albums: []
 }
 export default function albumReducer(state = initialState, action) {

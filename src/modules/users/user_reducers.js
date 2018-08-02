@@ -1,6 +1,6 @@
 import { FETCH_USER, FETCH_USERS } from "./user_actions";
 
-const initialState = {
+export const initialState = {
   users: []
 }
 export default function userReducer(state = initialState, action) {

@@ -1,6 +1,6 @@
 import { FETCH_COMMENT, FETCH_COMMENTS, TOGGLE_COMMENT_FORM } from "./comment_actions";
 
-const initialState = {
+export const initialState = {
   comments: [],
   comment: {}
 }

@@ -1,6 +1,6 @@
 import { FETCH_PHOTO, FETCH_PHOTOS, TOGGLE_PHOTO_MODAL } from "./photo_actions";
 
-const initialState = {
+export const initialState = {
   photos: [],
   photoDialog: false
 }

@@ -4,7 +4,7 @@ import {
   SET_ID, TOGGLE_POST_FORM 
 } from "./post_actions";
 
-const initialState = {
+export const initialState = {
   posts: [],
   postForm: false,
   newPost: {}
