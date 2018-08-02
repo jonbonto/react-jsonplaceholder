@@ -15,16 +15,20 @@ function getModalStyle() {
 
 const styles = theme => ({
   card: {
-    width: "15%",
     marginBottom: 12,
     marginRight: 12,
     float: "left",
+    [theme.breakpoints.up("md")]: {
+      width: "15%"
+    }
   },
   cardAlbum: {
-    width: "25%",
     marginBottom: 12,
     marginRight: 12,
     float: "left",
+    [theme.breakpoints.up("md")]: {
+      width: "30%"
+    }
   },
   title: {
     marginBottom: 16,

@@ -1,9 +1,11 @@
-const styles = {
+const styles = theme => ({
   card: {
-    width: "25%",
     marginBottom: 12,
     marginRight: 12,
     float: "left",
+    [theme.breakpoints.up("md")]: {
+      width: "30%"
+    }
   },
   title: {
     marginBottom: 16,
@@ -12,5 +14,6 @@ const styles = {
   pos: {
     marginBottom: 12,
   },
-};
+});
+
 export default styles;

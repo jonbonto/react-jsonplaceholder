@@ -5,22 +5,18 @@ export default theme => ({
     paddingBottom: theme.spacing.unit * 2,
     marginBottom: 10
   },
-  cardComment: {
-    width: "45%",
-    marginBottom: 12,
-    marginRight: 12,
-    float: "left",
-  },
   fab: {
     position: "fixed",
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2,
   },
   cardPost: {
-    width: "25%",
     marginBottom: 12,
     marginRight: 12,
     float: "left",
+    [theme.breakpoints.up("md")]: {
+      width: "30%"
+    }
   },
   title: {
     marginBottom: 16,
