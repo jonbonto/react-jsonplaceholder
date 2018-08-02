@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import GridList from "@material-ui/core/GridList";
 
 import { getAlbumListByUserId, getAlbumList } from "../../modules/albums/album_api";
 import { fetchAlbums } from "../../modules/albums/album_actions";
@@ -47,7 +48,9 @@ class AlbumList extends React.Component {
     return (
       <div>
         {heading}
-        {albumList}
+        <GridList>
+          {albumList}
+        </GridList>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import GridList from "@material-ui/core/GridList";
 
 import UserCard from "./components/UserCard";
 import { getUserList } from "../../modules/users/user_api";
@@ -19,7 +20,9 @@ export class UserList extends React.Component {
     return (
       <div>
         <h3>All Users</h3>
-        {userList}
+        <GridList>
+          {userList}
+        </GridList>
       </div>
     );
   }

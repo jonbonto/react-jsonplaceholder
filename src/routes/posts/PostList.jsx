@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
+import GridList from "@material-ui/core/GridList";
 
 import { getPostListByUserId, getPostList, addPost, editPost, deletePost } from "../../modules/posts/post_api";
 import { getUserInfo } from "../../modules/users/user_api";
@@ -116,7 +117,9 @@ class PostList extends React.Component {
         >
           <AddIcon />
         </Button>
-        {postList}
+        <GridList>
+          {postList}
+        </GridList>
         <PostForm 
           open={openForm}
           submit={submitType}

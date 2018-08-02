@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
+import GridList from "@material-ui/core/GridList";
 
 import { getPhotos, getAlbumInfo } from "../../modules/albums/album_api";
 import { fetchAlbum } from "../../modules/albums/album_actions";
@@ -44,7 +45,9 @@ class Album extends React.Component {
     return (
       <div>
         <h3>{album.title}'s Album</h3>
-        {photos}
+        <GridList>
+          {photos}
+        </GridList>
         {photo && 
           <PhotoModal
             album={album}

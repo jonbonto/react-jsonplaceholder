@@ -12,11 +12,7 @@ export default theme => ({
   },
   cardPost: {
     marginBottom: 12,
-    marginRight: 12,
-    float: "left",
-    [theme.breakpoints.up("md")]: {
-      width: "30%"
-    }
+    marginRight: 12
   },
   title: {
     marginBottom: 16,
